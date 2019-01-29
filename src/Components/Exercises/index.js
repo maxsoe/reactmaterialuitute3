@@ -1,16 +1,43 @@
-import React from "react";
-import { Grid } from "@material-ui/core";
-import LeftPane from "./LeftPane";
+import React, { Fragment } from "react";
+import {
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+  Paper,
+  Typography
+} from "@material-ui/core";
 import RightPane from "./RightPane";
 
 const style = {
-  Paper: { padding: 20, marginTop: 10, marginBottom: 10 }
+  Paper: {
+    padding: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    height: 500,
+    overflowY: "auto"
+  }
 };
 
-export default props => (
-  <Grid container>
+export default ({ exercises }) => (
+  <Grid container spacing={16}>
     <Grid item sm>
-      <LeftPane style={style} />
+      <Paper style={style.Paper}>
+        {exercises.map(([group, exercises]) => (
+          <Fragment>
+            <Typography variant="h5" style={{ textTransform: "capitalize" }}>
+              {group}
+            </Typography>
+            <List component="ul">
+              {exercises.map(({ title }) => (
+                <ListItem button>
+                  <ListItemText primary={title} />
+                </ListItem>
+              ))}
+            </List>
+          </Fragment>
+        ))}
+      </Paper>
     </Grid>
     <Grid item sm>
       <RightPane style={style} />
