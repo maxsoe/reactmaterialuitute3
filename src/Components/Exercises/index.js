@@ -7,7 +7,6 @@ import {
   Paper,
   Typography
 } from "@material-ui/core";
-import RightPane from "./RightPane";
 
 const style = {
   Paper: {
