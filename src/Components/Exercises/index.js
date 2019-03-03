@@ -1,12 +1,15 @@
 import React, { Fragment } from "react";
 import {
   Grid,
+  IconButton,
   List,
   ListItem,
   ListItemText,
+  ListItemSecondaryAction,
   Paper,
   Typography
 } from "@material-ui/core";
+import { Delete } from "@material-ui/icons";
 
 const style = {
   Paper: {
@@ -26,7 +29,8 @@ export default ({
     id,
     title = "Welcome!",
     description = "Please select an exercise from the list on the left"
-  }
+  },
+  onDelete
 }) => (
   <Grid container spacing={16}>
     <Grid item sm>
@@ -41,6 +45,11 @@ export default ({
                 {exercises.map(({ id, title }) => (
                   <ListItem key={id} button onClick={() => onSelect(id)}>
                     <ListItemText primary={title} />
+                    <ListItemSecondaryAction>
+                      <IconButton onClick={() => onDelete(id)}>
+                        <Delete />
+                      </IconButton>
+                    </ListItemSecondaryAction>
                   </ListItem>
                 ))}
               </List>
