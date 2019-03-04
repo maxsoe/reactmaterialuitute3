@@ -24,6 +24,12 @@ export default withStyles(styles)(
       return exercise ? exercise : { title: "", description: "", muscles: "" };
     }
 
+    componentWillReceiveProps({ exercise }) {
+      this.setState({
+        ...exercise
+      });
+    }
+
     handleChange = name => ({ target: { value } }) => {
       this.setState({
         [name]: value
@@ -32,26 +38,18 @@ export default withStyles(styles)(
 
     handleSubmit = () => {
       // todo: validation
-      const { exercise } = this.state;
 
       this.props.onSubmit({
-        ...exercise,
-        id: exercise.title.toLocaleLowerCase().replace(/ /g, "-")
+        id: this.state.title.toLocaleLowerCase().replace(/ /g, "-"),
+        ...this.state
       });
 
-      this.setState({
-        open: false,
-        exercise: {
-          title: "",
-          description: "",
-          muscles: ""
-        }
-      });
+      this.setState(this.getInitState());
     };
 
     render() {
       const { title, description, muscles } = this.state,
-        { classes, muscles: categories } = this.props;
+        { classes, exercise, muscles: categories } = this.props;
 
       return (
         <form>
@@ -87,7 +85,7 @@ export default withStyles(styles)(
           />
           <br />
           <Button color="primary" variant="raised" onClick={this.handleSubmit}>
-            Create
+            {exercise ? "Edit" : "Create"}
           </Button>
         </form>
       );

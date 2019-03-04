@@ -49,7 +49,8 @@ class App extends Component {
 
   handleExerciseSelect = id => {
     this.setState(({ exercises }) => ({
-      exercise: exercises.find(ex => ex.id === id)
+      exercise: exercises.find(ex => ex.id === id),
+      editMode: false
     }));
   };
 
@@ -62,13 +63,16 @@ class App extends Component {
   handelExerciseDelete = id => {
     //lorum ipsum
     this.setState(({ exercises }) => ({
-      exercises: exercises.filter(ex => ex.id !== id)
+      exercises: exercises.filter(ex => ex.id !== id),
+      editMode: false,
+      exercise: {}
     }));
   };
 
   handleExerciseEdit = exercise =>
     this.setState(({ exercises }) => ({
-      exercises: [...exercises.filter(ex => ex.id !== exercise.id), exercise]
+      exercises: [...exercises.filter(ex => ex.id !== exercise.id), exercise],
+      exercise
     }));
 
   handleExerciseSelectEdit = id => {
