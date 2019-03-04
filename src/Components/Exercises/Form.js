@@ -9,11 +9,12 @@ import {
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 
-const styles = theme => ({
-  FormControl: {
-    width: 300
-  }
-});
+const styles = theme =>
+  console.log(theme) || {
+    FormControl: {
+      width: 300
+    }
+  };
 
 export default withStyles(styles)(
   class extends Component {
@@ -76,7 +77,11 @@ export default withStyles(styles)(
             margin="normal"
           />
           <br />
-          <Button color="primary" variant="raised" onClick={this.handleSubmit}>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={this.handleSubmit}
+          >
             {exercise ? "Edit" : "Create"}
           </Button>
         </form>
