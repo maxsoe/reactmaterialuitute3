@@ -24,12 +24,6 @@ export default withStyles(styles)(
       return exercise ? exercise : { title: "", description: "", muscles: "" };
     }
 
-    componentWillReceiveProps({ exercise }) {
-      this.setState({
-        ...exercise
-      });
-    }
-
     handleChange = name => ({ target: { value } }) => {
       this.setState({
         [name]: value
@@ -43,8 +37,6 @@ export default withStyles(styles)(
         id: this.state.title.toLocaleLowerCase().replace(/ /g, "-"),
         ...this.state
       });
-
-      this.setState(this.getInitState());
     };
 
     render() {

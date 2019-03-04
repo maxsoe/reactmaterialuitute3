@@ -70,7 +70,12 @@ export default ({
     <Grid item sm>
       <Paper style={style.Paper}>
         {editMode ? (
-          <Form exercise={exercise} muscles={muscles} onSubmit={onEdit} />
+          <Form
+            key={id}
+            exercise={exercise}
+            muscles={muscles}
+            onSubmit={onEdit}
+          />
         ) : (
           <Fragment>
             <Typography variant="h4">{title}</Typography>

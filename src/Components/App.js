@@ -47,13 +47,6 @@ class App extends Component {
     this.setState({ category });
   };
 
-  handleExerciseSelect = id => {
-    this.setState(({ exercises }) => ({
-      exercise: exercises.find(ex => ex.id === id),
-      editMode: false
-    }));
-  };
-
   handleExerciseCreate = exercise => {
     this.setState(({ exercises }) => ({
       exercises: [...exercises, exercise]
@@ -61,11 +54,10 @@ class App extends Component {
   };
 
   handelExerciseDelete = id => {
-    //lorum ipsum
-    this.setState(({ exercises }) => ({
+    this.setState(({ editMode, exercise, exercises }) => ({
       exercises: exercises.filter(ex => ex.id !== id),
-      editMode: false,
-      exercise: {}
+      editMode: exercise.id === id ? false : editMode,
+      exercise: exercise.id === id ? {} : exercise
     }));
   };
 
@@ -74,6 +66,13 @@ class App extends Component {
       exercises: [...exercises.filter(ex => ex.id !== exercise.id), exercise],
       exercise
     }));
+
+  handleExerciseSelect = id => {
+    this.setState(({ exercises }) => ({
+      exercise: exercises.find(ex => ex.id === id),
+      editMode: false
+    }));
+  };
 
   handleExerciseSelectEdit = id => {
     this.setState(({ exercises }) => ({
