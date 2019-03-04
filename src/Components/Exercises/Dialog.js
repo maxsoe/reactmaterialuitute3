@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
+import { Fab } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
-import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
@@ -27,9 +27,9 @@ export default (class extends Component {
 
     return (
       <Fragment>
-        <Button variant="fab" onClick={this.handleToggle} mini>
+        <Fab onClick={this.handleToggle} size="small">
           <Add />
-        </Button>
+        </Fab>
         <Dialog
           open={open}
           onClose={this.handleToggle}
