@@ -9,12 +9,11 @@ import {
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 
-const styles = theme =>
-  console.log(theme) || {
-    FormControl: {
-      width: 300
-    }
-  };
+const styles = theme => ({
+  FormControl: {
+    width: 300
+  }
+});
 
 export default withStyles(styles)(
   class extends Component {
