@@ -31,9 +31,11 @@ export default (class extends Component {
           <Add />
         </Fab>
         <Dialog
-          open={open}
-          onClose={this.handleToggle}
           aria-labelledby="form-dialog-title"
+          fullWidth
+          maxWidth="xs"
+          onClose={this.handleToggle}
+          open={open}
         >
           <DialogTitle id="form-dialog-title">
             Create a new exercise
