@@ -14,7 +14,8 @@ const theme = createMuiTheme({
       dark: green[700]
     },
     type: "dark"
-  }
+  },
+  spacing: { unit: 10 }
 });
 
 render(
