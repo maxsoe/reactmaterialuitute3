@@ -27,7 +27,7 @@ export default (class extends Component {
 
     return (
       <Fragment>
-        <Fab onClick={this.handleToggle} size="small">
+        <Fab color="secondary" onClick={this.handleToggle} size="small">
           <Add />
         </Fab>
         <Dialog
