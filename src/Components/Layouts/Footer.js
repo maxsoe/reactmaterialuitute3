@@ -1,58 +1,37 @@
-import React from "react";
-import { AppBar, Tabs, Tab } from "@material-ui/core";
-import withWidth from "@material-ui/core/withWidth";
+import React, { Component } from "react";
+import { AppBar, Tabs, Tab, withWidth } from "@material-ui/core";
+import { withContext } from "../../context";
 
-// export default withWidth()(({ muscles, category, onSelect }) => {
-//   const index = category
-//     ? muscles.findIndex(group => group === category) + 1
-//     : 0;
-//
-//   const onIndexSelect = (e, index) =>
-//     onSelect(index === 0 ? "" : muscles[index - 1]);
-//
-//   return (
-//     <Paper>
-//       <Tabs
-//         indicatorColor="primary"
-//         onChange={onIndexSelect}
-//         textColor="primary"
-//         value={index}
-//         variant="scrollable"
-//       >
-//         <Tab label="All" />
-//         {muscles.map(muscleGroup => (
-//           <Tab key={muscleGroup} label={muscleGroup} />
-//         ))}
-//       </Tabs>
-//     </Paper>
-//   );
-// });
+class Footer extends Component {
+  onIndexSelect = (e, index) => {
+    const { onCategorySelect, muscles } = this.props;
+    onCategorySelect(index === 0 ? "" : muscles[index - 1]);
+  };
 
-const Footer = ({ muscles, category, onSelect, width }) => {
-  console.log(width);
-  const index = category
-    ? muscles.findIndex(group => group === category) + 1
-    : 0;
+  getIndex = () => {
+    const { category, muscles } = this.props;
+    return category ? muscles.findIndex(group => group === category) + 1 : 0;
+  };
 
-  const onIndexSelect = (e, index) =>
-    onSelect(index === 0 ? "" : muscles[index - 1]);
+  render() {
+    const { muscles } = this.props;
+    return (
+      <AppBar position="static">
+        <Tabs
+          indicatorColor="secondary"
+          onChange={this.onIndexSelect}
+          textColor="secondary"
+          value={this.getIndex}
+          variant="scrollable"
+        >
+          <Tab label="All" />
+          {muscles.map(muscleGroup => (
+            <Tab key={muscleGroup} label={muscleGroup} />
+          ))}
+        </Tabs>
+      </AppBar>
+    );
+  }
+}
 
-  return (
-    <AppBar position="static">
-      <Tabs
-        indicatorColor="secondary"
-        onChange={onIndexSelect}
-        textColor="secondary"
-        value={index}
-        variant="scrollable"
-      >
-        <Tab label="All" />
-        {muscles.map(muscleGroup => (
-          <Tab key={muscleGroup} label={muscleGroup} />
-        ))}
-      </Tabs>
-    </AppBar>
-  );
-};
-
-export default withWidth()(Footer);
+export default withContext(withWidth()(Footer));

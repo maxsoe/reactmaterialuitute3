@@ -6,8 +6,9 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Form from "./Form";
+import { withContext } from "../../context";
 
-export default (class extends Component {
+class CreateDialog extends Component {
   state = { open: false };
 
   handleFormSubmit = exercise => {
@@ -50,4 +51,6 @@ export default (class extends Component {
       </Fragment>
     );
   }
-});
+}
+
+export default withContext(CreateDialog);

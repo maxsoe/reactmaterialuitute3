@@ -9,7 +9,7 @@ const styles = {
   }
 };
 
-const Header = ({ classes, muscles, onExerciseCreate }) => (
+const Header = ({ classes }) => (
   <AppBar position="static">
     <Toolbar>
       <Typography
@@ -20,7 +20,7 @@ const Header = ({ classes, muscles, onExerciseCreate }) => (
       >
         Exercise database
       </Typography>
-      <CreateDialog muscles={muscles} onCreate={onExerciseCreate} />
+      <CreateDialog />
     </Toolbar>
   </AppBar>
 );
