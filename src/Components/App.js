@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Header, Footer } from "./Layouts";
 import Exercises from "./Exercises";
@@ -6,14 +6,13 @@ import { exercises, muscles } from "../store";
 
 import { Provider } from "../context";
 
-class App extends Component {
+class App extends PureComponent {
   state = {
     exercises,
     exercise: {},
+    category: "",
     editMode: false
   };
-
-  // Use the code below if we want to keep the categories visible even if there are no exercises in said category
 
   getExercisesByMuscles() {
     const initExercises = muscles.reduce(
@@ -31,19 +30,6 @@ class App extends Component {
         return exercises;
       }, initExercises)
     );
-
-    // Use the code below if you want the categories disappear if there are no exercises in said category.
-    // getExercisesByMuscles() {
-    // return Object.entries(
-    //   this.state.exercises.reduce((exercises, exercise) => {
-    //     const { muscles } = exercise;
-    //     exercises[muscles] = exercises[muscles]
-    //       ? [...exercises[muscles], exercise]
-    //       : [exercise];
-    //
-    //     return exercises;
-    //   }, {})
-    // );
   }
 
   handleCategorySelect = category => {
@@ -101,10 +87,6 @@ class App extends Component {
     return (
       <Provider value={this.getContext()}>
         <CssBaseline />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-        />
         <Header />
         <Exercises />
         <Footer />

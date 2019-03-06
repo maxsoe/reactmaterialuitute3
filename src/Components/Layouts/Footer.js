@@ -1,32 +1,34 @@
 import React, { Component } from "react";
-import { AppBar, Tabs, Tab, withWidth } from "@material-ui/core";
+import { AppBar, Tabs, Tab } from "@material-ui/core";
 import { withContext } from "../../context";
 
 class Footer extends Component {
+  muscles = this.getMuscles();
+
+  getMuscles() {
+    return ["", ...this.props.muscles];
+  }
+
   onIndexSelect = (e, index) => {
-    const { onCategorySelect, muscles } = this.props;
-    onCategorySelect(index === 0 ? "" : muscles[index - 1]);
+    this.props.onCategorySelect(this.muscles[index]);
   };
 
   getIndex = () => {
-    const { category, muscles } = this.props;
-    return category ? muscles.findIndex(group => group === category) + 1 : 0;
+    return this.muscles.indexOf(this.props.category);
   };
 
   render() {
-    const { muscles } = this.props;
     return (
       <AppBar position="static">
         <Tabs
           indicatorColor="secondary"
           onChange={this.onIndexSelect}
           textColor="secondary"
-          value={this.getIndex}
+          value={this.getIndex()}
           variant="scrollable"
         >
-          <Tab label="All" />
-          {muscles.map(muscleGroup => (
-            <Tab key={muscleGroup} label={muscleGroup} />
+          {this.muscles.map(muscleGroup => (
+            <Tab key={muscleGroup} label={muscleGroup || "All"} />
           ))}
         </Tabs>
       </AppBar>
@@ -34,4 +36,4 @@ class Footer extends Component {
   }
 }
 
-export default withContext(withWidth()(Footer));
+export default withContext(Footer);

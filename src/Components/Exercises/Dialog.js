@@ -6,14 +6,16 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Form from "./Form";
-import { withContext } from "../../context";
+import { ExercisesContext } from "../../context";
 
 class CreateDialog extends Component {
+  static contextType = ExercisesContext;
+
   state = { open: false };
 
   handleFormSubmit = exercise => {
     this.handleToggle();
-    this.props.onCreate(exercise);
+    this.context.onCreate(exercise);
   };
 
   handleToggle = () => {
@@ -24,7 +26,7 @@ class CreateDialog extends Component {
 
   render() {
     const { open } = this.state,
-      { muscles } = this.props;
+      { muscles } = this.context;
 
     return (
       <Fragment>
@@ -53,4 +55,4 @@ class CreateDialog extends Component {
   }
 }
 
-export default withContext(CreateDialog);
+export default CreateDialog;

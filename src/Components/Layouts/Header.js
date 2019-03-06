@@ -12,12 +12,7 @@ const styles = {
 const Header = ({ classes }) => (
   <AppBar position="static">
     <Toolbar>
-      <Typography
-        component="h1"
-        color="inherit"
-        variant="h5"
-        className={classes.flex}
-      >
+      <Typography color="inherit" variant="h5" className={classes.flex}>
         Exercise database
       </Typography>
       <CreateDialog />

@@ -112,7 +112,7 @@ const Exercises = ({
             onSubmit={onEdit}
           />
         ) : (
-          <Typography variant="body2">{description}</Typography>
+          <Typography variant="subtitle1">{description}</Typography>
         )}
       </Paper>
     </Grid>
