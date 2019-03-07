@@ -8,7 +8,7 @@ import {
   Select
 } from "@material-ui/core";
 
-export default (class extends Component {
+class Form extends Component {
   state = this.getInitState();
 
   getInitState() {
@@ -16,7 +16,7 @@ export default (class extends Component {
     return exercise ? exercise : { title: "", description: "", muscles: "" };
   }
 
-  handleChange = name => ({ target: { value } }) => {
+  handleChange = ({ target: { value, name } }) => {
     this.setState({
       [name]: value
     });
@@ -41,14 +41,15 @@ export default (class extends Component {
           id="standard-title"
           label="Title"
           value={title}
-          onChange={this.handleChange("title")}
+          name="title"
+          onChange={this.handleChange}
           margin="normal"
           fullWidth
         />
-        <br />
-        <FormControl fullWidth>
+
+        <FormControl fullWidth margin="normal">
           <InputLabel htmlFor="muscles ">Muscles</InputLabel>
-          <Select value={muscles} onChange={this.handleChange("muscles")}>
+          <Select value={muscles} name="muscles" onChange={this.handleChange}>
             {categories.map(category => (
               <MenuItem key={category} value={category}>
                 {category}
@@ -56,7 +57,7 @@ export default (class extends Component {
             ))}
           </Select>
         </FormControl>
-        <br />
+
         <TextField
           fullWidth
           id="standard-description"
@@ -64,10 +65,11 @@ export default (class extends Component {
           multiline
           rows="4"
           value={description}
-          onChange={this.handleChange("description")}
+          name="description"
+          onChange={this.handleChange}
           margin="normal"
         />
-        <br />
+
         <Button
           color="primary"
           variant="contained"
@@ -79,4 +81,6 @@ export default (class extends Component {
       </form>
     );
   }
-});
+}
+
+export default Form;

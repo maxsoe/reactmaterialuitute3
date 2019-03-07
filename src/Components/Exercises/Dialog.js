@@ -1,14 +1,16 @@
 import React, { Component, Fragment } from "react";
-import { Fab } from "@material-ui/core";
+import {
+  Dialog as MuiDialog,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Fab
+} from "@material-ui/core";
 import { Add } from "@material-ui/icons";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import Form from "./Form";
 import { ExercisesContext } from "../../context";
 
-class CreateDialog extends Component {
+class Dialog extends Component {
   static contextType = ExercisesContext;
 
   state = { open: false };
@@ -33,7 +35,7 @@ class CreateDialog extends Component {
         <Fab color="secondary" onClick={this.handleToggle} size="small">
           <Add />
         </Fab>
-        <Dialog
+        <MuiDialog
           aria-labelledby="form-dialog-title"
           fullWidth
           maxWidth="xs"
@@ -49,10 +51,10 @@ class CreateDialog extends Component {
             </DialogContentText>
             <Form muscles={muscles} onSubmit={this.handleFormSubmit} />
           </DialogContent>
-        </Dialog>
+        </MuiDialog>
       </Fragment>
     );
   }
 }
 
-export default CreateDialog;
+export default Dialog;

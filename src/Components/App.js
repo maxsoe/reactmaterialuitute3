@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Header, Footer } from "./Layouts";
-import Exercises from "./Exercises";
+import { Viewer } from "./Exercises";
 import { exercises, muscles } from "../store";
 
 import { Provider } from "../context";
@@ -88,7 +88,7 @@ class App extends PureComponent {
       <Provider value={this.getContext()}>
         <CssBaseline />
         <Header />
-        <Exercises />
+        <Viewer />
         <Footer />
       </Provider>
     );

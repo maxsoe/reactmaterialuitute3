@@ -1,6 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
-import CreateDialog from "../Exercises/Dialog";
+import { Dialog } from "../Exercises";
 import { withStyles } from "@material-ui/styles";
 
 const styles = {
@@ -15,7 +15,7 @@ const Header = ({ classes }) => (
       <Typography color="inherit" variant="h5" className={classes.flex}>
         Exercise database
       </Typography>
-      <CreateDialog />
+      <Dialog />
     </Toolbar>
   </AppBar>
 );
